@@ -16,7 +16,7 @@ let displayLeavesValue = true;
 
 let pickerLeaf = new Picker(colorPickerLeaf);
 let pickerTrunk = new Picker(colorPickerTrunk);
-let leafColor = "#0bff00ff";
+let leafColor = "#ffffff";
 let trunkColor = "#ff0071ff";
 
 document.addEventListener("DOMContentLoaded", function () {
@@ -62,10 +62,10 @@ function draw(x: number, y: number, distance: number, angle: number, branchWidth
   ctx.translate(x, y);
   ctx.rotate((angle * Math.PI) / 180);
   ctx.moveTo(0, 0);
-  // ctx.lineTo(0, -distance);
   ctx.bezierCurveTo(10, -distance/2, 5, -distance/2, 0, -distance)
   ctx.stroke();
 
+  console.log("trunk:"  + trunkColor + " leaf:" + leafColor)
   if (distance < 10) {
     if (displayLeavesValue) {
       ctx.beginPath();
