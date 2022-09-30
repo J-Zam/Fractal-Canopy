@@ -9,8 +9,10 @@ let sliderAngle = $("angleBifurcation") as HTMLInputElement;
 let sliderLength = $("brachLengthVariation") as HTMLInputElement;
 let colorPickerLeaf = $("colorPickerLeaf") as HTMLElement;
 let colorPickerTrunk = $("colorPickerTrunk") as HTMLElement;
+let displayLeaves = $("displayLeaves") as HTMLInputElement;
 let angleBifurcation = 15;
 let branchVariation = 0.8;
+let displayLeavesValue = true;
 
 let pickerLeaf = new Picker(colorPickerLeaf);
 let pickerTrunk = new Picker(colorPickerTrunk);
@@ -20,6 +22,7 @@ let trunkColor = "#ff0071ff";
 document.addEventListener("DOMContentLoaded", function () {
   sliderAngle.value = "15";
   sliderLength.value = "0.80";
+  displayLeaves.checked = true;
   colorPickerLeaf.style.backgroundColor = leafColor;
   colorPickerTrunk.style.backgroundColor = trunkColor;
 });
@@ -41,10 +44,11 @@ pickerTrunk.onChange = function (color) {
   start();
 };
 
-[sliderAngle, sliderLength].forEach((item) => {
+[sliderAngle, sliderLength, displayLeaves].forEach((item) => {
   item.addEventListener("input", () => {
     angleBifurcation = parseInt(sliderAngle.value);
     branchVariation = parseFloat(sliderLength.value);
+    displayLeavesValue = displayLeaves.checked; 
     start();
   });
 });
@@ -58,13 +62,16 @@ function draw(x: number, y: number, distance: number, angle: number, branchWidth
   ctx.translate(x, y);
   ctx.rotate((angle * Math.PI) / 180);
   ctx.moveTo(0, 0);
-  ctx.lineTo(0, -distance);
+  // ctx.lineTo(0, -distance);
+  ctx.bezierCurveTo(10, -distance/2, 5, -distance/2, 0, -distance)
   ctx.stroke();
 
   if (distance < 10) {
-    ctx.beginPath();
-    ctx.arc(0, -distance, 8, 0, Math.PI / 2);
-    ctx.fill();
+    if (displayLeavesValue) {
+      ctx.beginPath();
+      ctx.arc(0, -distance, 8, 0, Math.PI / 2);
+      ctx.fill();
+    }
     ctx.restore();
     return;
   }
@@ -82,7 +89,7 @@ function resizing() {
 function start() {
   ctx.fillStyle = "rgb(0,0,0)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  draw(canvas.width / 2, canvas.height - 80, 112, 0, 10);
+  draw(canvas.width / 2, canvas.height - 80, 115, 0, 10);
 }
 
 resizing();

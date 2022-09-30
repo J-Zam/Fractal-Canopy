@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="./favicon.png" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Fractal tree</title>
+  <title>Fractal Canopy</title>
 </head>
 
 <body>
@@ -14,20 +14,27 @@
     <label>Angle</label>
     <input type="range" id="angleBifurcation" min="2" max="90" step="1" value="15" />
     <label>Brach length</label>
-    <input type="range" id="brachLengthVariation" min="0.10" max=".80" step="0.01" value=".80" />
+    <input type="range" id="brachLengthVariation" min="0" max=".80" step="0.01" value=".80" />
 
     <div class="colorContainer">
 
-      <div>
-        <label>Leaf color: </label>
+      <div class="color-item">
+        <label class="color-item-label">Leaf: </label>
         <div id="colorPickerLeaf"></div>
       </div>
-      
-      <div>
-        <label>Trunk color: </label>
+
+      <div class="color-item">
+        <label class="color-item-label">Trunk: </label>
         <div id="colorPickerTrunk"></div>
       </div>
 
+    </div>
+
+    
+    <div class="line"></div>
+    <div class="leaves">
+      <label>Display leaves? </label>
+      <input type="checkbox" id="displayLeaves">
     </div>
 
   </section>
