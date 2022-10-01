@@ -1,7 +1,7 @@
 ### 🔴 Fractal Canopy
-Each branch of the fractal tree is a replica of the base of the tree. Also, they are symmetrical, unless randomness is adopted.
 
-![Captura2](https://user-images.githubusercontent.com/51100407/193351187-cce5ff31-fe0a-4a0b-bc46-b89c14cf5448.PNG)
+Fractal trees are among the easiest of fractal objects to understand. They are based on the idea of self-similarity.
 
-🔗 Recommended: [https://fractalsaco.weebly.com](https://fractalsaco.weebly.com/fractal-tree.html)
+![Captura1](https://user-images.githubusercontent.com/51100407/193418582-ce8a2d39-6d01-4348-87cf-6ca69a4b3293.PNG)
 
+🔗 Recommended: [https://engineering.jhu.edu](https://engineering.jhu.edu/lefd/canopy-flows/fractal-canopy/)
