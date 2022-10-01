@@ -61,6 +61,8 @@ input {
 
 .leaves {
     margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
 }
 
 .line {

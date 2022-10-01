@@ -10,9 +10,11 @@ let sliderLength = $("brachLengthVariation") as HTMLInputElement;
 let colorPickerLeaf = $("colorPickerLeaf") as HTMLElement;
 let colorPickerTrunk = $("colorPickerTrunk") as HTMLElement;
 let displayLeaves = $("displayLeaves") as HTMLInputElement;
+let displayCurves = $("displayCurves") as HTMLInputElement;
 let angleBifurcation = 15;
 let branchVariation = 0.8;
 let displayLeavesValue = true;
+let displayCurvesValue = true;
 
 let pickerLeaf = new Picker(colorPickerLeaf);
 let pickerTrunk = new Picker(colorPickerTrunk);
@@ -23,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
   sliderAngle.value = "15";
   sliderLength.value = "0.80";
   displayLeaves.checked = true;
+  displayCurves.checked = true;
   colorPickerLeaf.style.backgroundColor = leafColor;
   colorPickerTrunk.style.backgroundColor = trunkColor;
 });
@@ -44,11 +47,12 @@ pickerTrunk.onChange = function (color) {
   start();
 };
 
-[sliderAngle, sliderLength, displayLeaves].forEach((item) => {
+[sliderAngle, sliderLength, displayLeaves, displayCurves].forEach((item) => {
   item.addEventListener("input", () => {
     angleBifurcation = parseInt(sliderAngle.value);
     branchVariation = parseFloat(sliderLength.value);
     displayLeavesValue = displayLeaves.checked; 
+    displayCurvesValue = displayCurves.checked; 
     start();
   });
 });
@@ -62,10 +66,14 @@ function draw(x: number, y: number, distance: number, angle: number, branchWidth
   ctx.translate(x, y);
   ctx.rotate((angle * Math.PI) / 180);
   ctx.moveTo(0, 0);
-  ctx.bezierCurveTo(10, -distance/2, 5, -distance/2, 0, -distance)
+
+  if (displayCurvesValue) {
+    ctx.bezierCurveTo(10, -distance/2, 5, -distance/2, 0, -distance)
+  } else {
+    ctx.lineTo(0, -distance)
+  }
   ctx.stroke();
 
-  console.log("trunk:"  + trunkColor + " leaf:" + leafColor)
   if (distance < 10) {
     if (displayLeavesValue) {
       ctx.beginPath();
